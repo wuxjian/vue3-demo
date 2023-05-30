@@ -22,9 +22,6 @@ const url = computed(() => {
 
 const { data: todo, error, loding, fethcData } = useHttp<Todo>(url, 'get', null)
 
-function handleSwitchData() {
-  fethcData()
-}
 
 
 
@@ -68,7 +65,7 @@ const objAttr = {
     <hr/>
     <div>
       <span>todo:</span>
-      <button @click="handleSwitchData">切换</button>
+      <button @click="fethcData">切换</button>
       <select v-model="id">
         <option value="1">1</option>
         <option value="2">2</option>

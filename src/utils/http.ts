@@ -74,8 +74,11 @@ function useHttp<T> (url: string | Ref<string>, method: string, params: any) {
     const data = ref<T>()
     const error = ref<Error>()
     const loding = ref(true)
+    const first = ref(true)
+
 
     function fethcData() {
+        reset()
         instance.request({
             url: unref(url),
             method: method,
@@ -85,8 +88,18 @@ function useHttp<T> (url: string | Ref<string>, method: string, params: any) {
         }).catch(e => error.value = e)
         .finally(() => {
             loding.value = false
+            first.value = false
         })
     }
+
+    function reset() {
+        if (!first.value){
+            error.value = undefined
+            loding.value = true
+            data.value = undefined
+        }
+    }
+
 
     fethcData()
     
