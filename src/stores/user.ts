@@ -17,10 +17,10 @@ export const useUserStore = defineStore('user', () => {
 
 
     const login = (name: string) => {
-        return new Promise((resole, reject) => {
+        return new Promise<void>((resole, reject) => {
             username.value = name
             sessionStorage.setItem(usernameKey, name)
-            resole('')
+            resole()
         });
         
     }
